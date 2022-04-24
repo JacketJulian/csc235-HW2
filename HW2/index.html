@@ -3,7 +3,7 @@
 <!--Name: Julian Mangual
 Course: CSC-235-01
 HomeWork: #2
-Git-Hub: 
+Git-Hub: https://github.com/JacketJulian/csc235-HW2
 -->
 
 
@@ -42,11 +42,11 @@ Git-Hub:
         <script language="Javascript">
             <!--
                 
-            var dxV = new Array(0,0,0,0,0);
-            var h = new Array(false, false, false, false, false);
-            var dxR = 0;
-            var f = new Array(0,0,0,0,0,0,0,0);
-            var total = 0;
+            var dxV = new Array(0,0,0,0,0); // Dice individual values
+            var h = new Array(false, false, false, false, false); // held array
+            var dxR = 0; // Number of rolls
+            var f = new Array(0,0,0,0,0,0,0,0); // 
+            var total = 0; // Total from values
             
             
                 function roll()
@@ -122,6 +122,34 @@ Git-Hub:
                         }
                         
                         }
+                    function clr(x){
+                        var dx0 = document.getElementById("score" + x);
+                        var dx1 = document.getElementById("ofaKind" + x);
+
+                        dx0.innerHTML = null;
+                        dx1.innerHTML = null;
+                    }
+                    function clk(x){
+                        var dx0 = document.getElementById("score" + x);
+
+                        dx0.innerHTML = f[x] * x;
+                    }
+
+                    function newGame(){
+                    
+                        for(var i=0; i<5; i++){
+                            var dx0 = document.getElementById("dice-"+ i);
+                            dx0.src = "pix/dice" +0+".gif";
+                            dxV[i] = 0;
+                    }
+                        for(var n=0; n<9; n++){
+                            f[n] = 0;
+                    }
+                
+                        dxR = 0;
+
+
+                    }
                     
 
 
@@ -151,38 +179,38 @@ Git-Hub:
         <tr>
             <td class="box-1"> 1's
             </td>
-            <td class="box-2" id="score1" onMouseOver ="scr(1)"     onMouseOut="clr()"   onClick="clk()">
+            <td class="box-2" id="score1" onMouseOver ="scr(1)" onMouseOut="clr(1)"   onClick="clk(1)">
             </td>
             <td class="box-3" rowspan ='5'><button onClick="roll()" class="button-1">Roll</button>
             </td></tr>
             <tr>
              <td class="box-1"> 2's
             </td>
-            <td class="box-2" id="score2" onMouseOver ="scr(2)"     onMouseOut="clr()"   onClick="clk()">
+            <td class="box-2" id="score2" onMouseOver ="scr(2)" onMouseOut="clr(2)"   onClick="clk(2)">
             </td>
             </tr>
             <tr>
              <td class="box-1"> 3's
             </td>
-            <td class="box-2" id="score3" onMouseOver ="scr(3)"     onMouseOut="clr()"   onClick="clk()">
+            <td class="box-2" id="score3" onMouseOver ="scr(3)" onMouseOut="clr(3)"   onClick="clk(3)">
             </td>
             </tr>
             <tr>
              <td class="box-1"> 4's
             </td>
-            <td class="box-2" id="score4" onMouseOver ="scr(4)"     onMouseOut="clr()"   onClick="clk()">
+            <td class="box-2" id="score4" onMouseOver ="scr(4)" onMouseOut="clr(4)"   onClick="clk(4)">
             </td>
             </tr>
             <tr>
              <td class="box-1"> 5's
             </td>
-            <td class="box-2" id="score5" onMouseOver ="scr(5)"     onMouseOut="clr()"   onClick="clk()">
+            <td class="box-2" id="score5" onMouseOver ="scr(5)" onMouseOut="clr(5)"   onClick="clk(5)">
             </td>
             </tr>
             <tr>
              <td class="box-1"> 6's
             </td>
-            <td class="box-2" id="score6" onMouseOver ="scr(6)"     onMouseOut="clr()"   onClick="clk()">
+            <td class="box-2" id="score6" onMouseOver ="scr(6)" onMouseOut="clr(6)"   onClick="clk(6)">
             </td>
             </tr>
             
@@ -190,26 +218,26 @@ Git-Hub:
             <tr>
             <td class="box-1"> 3 of a kind
             </td>
-            <td class="box-2" id="ofaKind3" onMouseOver = "ofaKind(3)">
+            <td class="box-2" id="ofaKind3" onMouseOver = "ofaKind(3)" onMouseOut="clr(3)">
             </td>
-            <td class="box-3" rowspan ='5'> <button class="button-2">New game</button>
+            <td class="box-3" rowspan ='5'> <button class="button-2" onClick = "newGame()">New game</button>
             </td> </tr>
             <tr>
              <td class="box-1"> 4 of a kind
             </td>
-            <td class="box-2" id="ofaKind4" onMouseOver = "ofaKind(4)">
+            <td class="box-2" id="ofaKind4" onMouseOver = "ofaKind(4)" onMouseOut="clr(4)">
             </td>
             </tr>
             <tr>
              <td class="box-1"> Yahtzee
             </td>
-            <td class="box-2" id="ofaKind5" onMouseOver = "ofaKind(5)">
+            <td class="box-2" id="ofaKind5" onMouseOver = "ofaKind(5)" onMouseOut="clr(5)">
             </td>
             </tr>
             <tr>
              <td class="box-1"> Total
             </td>
-            <td class="box-2" id = "score7" onMouseOver = "scr(7)">
+            <td class="box-2" id = "score7" onMouseOver = "scr(7)" onMouseOut="clr(7)">
             </td>
             </tr>
             
