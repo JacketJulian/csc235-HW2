@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<!--Name: Julian Mangual
+Course: CSC-235-01
+HomeWork: #2
+Git-Hub: 
+-->
+
+
+<html>
+    
+    <head><title> Yahtzee </title>
+        
+        <style type='text/css'>
+            <!--
+            
+            h1 {   }
+            
+            div.dice-a {text-align:center;}
+            td.box-1 {  }
+            td.box-2 { border:2px groove #ababab; width:3em; height:1.5em; background-color: #acadfd;}
+            td.box-3 {text-align:center; }
+            h1.title {text-align: center;}
+            button.button-1 {color: #f9ffde; background-color: #5c0369; font-family:times-new-roman;
+            padding-top: 5px; padding-bottom: 5px;}
+            button.button-2 {  }
+            table {margin-left:auto; margin-right:auto;}
+            
+            
+            -->
+        
+        
+        </style>
+    
+    
+    
+    
+    
+    </head>
+    
+    <body>
+        <script language="Javascript">
+            <!--
+                
+            var dxV = new Array(0,0,0,0,0);
+            var h = new Array(false, false, false, false, false);
+            var dxR = 0;
+            var f = new Array(0,0,0,0,0,0,0,0);
+            var total = 0;
+            
+            
+                function roll()
+            {
+                dxR++;
+                
+            if(dxR < 4){
+                    
+                f[1]=f[2]=f[3]=f[4]=f[5]=f[6]=0;
+                    
+                
+                    
+                    
+            for(var i= 0; i < 5; i++){
+                if(!h[i]){
+                var dx0 = document.getElementById("dice-"+i);
+                
+                dxV[i] = Math.floor(6*Math.random()) + 1; // v = 2
+                dx0.src = "pix/dice" +dxV[i]+".gif";
+            }
+                
+                f[dxV[i]]++;
+            }
+            
+            }
+            
+            }
+            
+                function hold(x){
+                h[x] = !h[x];
+                var dx0 = document.getElementById("dice-"+x);
+                    
+                if(h[x]){
+                
+                dx0.src= "pix/diceX" +dxV[x]+ ".gif";
+                }
+                else {
+                dx0.src= "pix/dice" +dxV[x] + ".gif";
+                }
+                
+                
+                    
+            }
+                    
+                    function scr(x){
+                        var dx0 = document.getElementById("score" + x);
+                        
+                        dx0.innerHTML = f[x] * x;
+
+                        if(x > 6){
+                            dx0.innerHTML = dxV[0] + dxV[1] + dxV[2] + dxV[3] + dxV[4];
+                        }
+                        
+                    }
+                    function ofaKind(x){
+                        var dx0 = document.getElementById("ofaKind" + x);
+
+                        var count = 0;
+
+                        for(i = 0; i < 5; i++){
+                            for(n = i+1; i<5; i++){
+                                if(dxV[i] == dxV[n]){
+                                count +=1;
+                            }
+                            }
+                        }
+
+                        if(count >= x){
+                            dx0.innerHTML = dxV[0] + dxV[1] + dxV[2] + dxV[3] + dxV[4];
+                        }
+                        else{
+                            dx0.innerHTML = 0;
+                        }
+                        
+                        }
+                    
+
+
+                
+                
+            //-->
+        
+        
+        
+        </script>
+        
+        <h1 class="title">Yahtzee</h1>
+        
+        <div class="dice-a">
+        <img id="dice-0" onClick ="hold(0)" src="pix/dice0.gif">
+        <img id="dice-1" onClick = "hold(1)" src="pix/dice0.gif">
+        <img id="dice-2" onClick ="hold(2)" src="pix/dice0.gif">
+        <img id="dice-3" onClick ="hold(3)" src="pix/dice0.gif">
+        <img id="dice-4" onClick ="hold(4)" src="pix/dice0.gif">
+        
+        
+        </div>
+        
+        
+        <table>
+        
+        <tr>
+            <td class="box-1"> 1's
+            </td>
+            <td class="box-2" id="score1" onMouseOver ="scr(1)"     onMouseOut="clr()"   onClick="clk()">
+            </td>
+            <td class="box-3" rowspan ='5'><button onClick="roll()" class="button-1">Roll</button>
+            </td></tr>
+            <tr>
+             <td class="box-1"> 2's
+            </td>
+            <td class="box-2" id="score2" onMouseOver ="scr(2)"     onMouseOut="clr()"   onClick="clk()">
+            </td>
+            </tr>
+            <tr>
+             <td class="box-1"> 3's
+            </td>
+            <td class="box-2" id="score3" onMouseOver ="scr(3)"     onMouseOut="clr()"   onClick="clk()">
+            </td>
+            </tr>
+            <tr>
+             <td class="box-1"> 4's
+            </td>
+            <td class="box-2" id="score4" onMouseOver ="scr(4)"     onMouseOut="clr()"   onClick="clk()">
+            </td>
+            </tr>
+            <tr>
+             <td class="box-1"> 5's
+            </td>
+            <td class="box-2" id="score5" onMouseOver ="scr(5)"     onMouseOut="clr()"   onClick="clk()">
+            </td>
+            </tr>
+            <tr>
+             <td class="box-1"> 6's
+            </td>
+            <td class="box-2" id="score6" onMouseOver ="scr(6)"     onMouseOut="clr()"   onClick="clk()">
+            </td>
+            </tr>
+            
+            
+            <tr>
+            <td class="box-1"> 3 of a kind
+            </td>
+            <td class="box-2" id="ofaKind3" onMouseOver = "ofaKind(3)">
+            </td>
+            <td class="box-3" rowspan ='5'> <button class="button-2">New game</button>
+            </td> </tr>
+            <tr>
+             <td class="box-1"> 4 of a kind
+            </td>
+            <td class="box-2" id="ofaKind4" onMouseOver = "ofaKind(4)">
+            </td>
+            </tr>
+            <tr>
+             <td class="box-1"> Yahtzee
+            </td>
+            <td class="box-2" id="ofaKind5" onMouseOver = "ofaKind(5)">
+            </td>
+            </tr>
+            <tr>
+             <td class="box-1"> Total
+            </td>
+            <td class="box-2" id = "score7" onMouseOver = "scr(7)">
+            </td>
+            </tr>
+            
+            
+        </table>
+    
+    
+    
+    
+    </body>
+
+
+
+
+
+</html>
