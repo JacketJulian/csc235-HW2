@@ -15,15 +15,15 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
             <!--
             
             h1 {   }
-            
+            body {background-color: #efefef}
             div.dice-a {text-align:center;}
-            td.box-1 {  }
-            td.box-2 { border:2px groove #ababab; width:3em; height:1.5em; background-color: #acadfd;}
+            td.box-1 {font-family: Arial; font-weight: bold;}
+            td.box-2 {border:2px groove #ababab; width:3em; height:1.5em; background-color: #acadfd;}
             td.box-3 {text-align:center; }
             h1.title {text-align: center;}
-            button.button-1 {color: #f9ffde; background-color: #5c0369; font-family:times-new-roman;
-            padding-top: 5px; padding-bottom: 5px;}
-            button.button-2 {  }
+            button.button-1 {color: #efefaf; background-color: #5a00ca; font-family:times-new-roman;
+            padding-top: 5px; padding-bottom: 5px;margin-left: 140%; font-weight: bold;}
+            button.button-2 {background-color: #afbfbf; color: #000055; margin-left: 120%; width:100%}
             table {margin-left:auto; margin-right:auto;}
             
             
@@ -47,6 +47,7 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
             var dxR = 0; // Number of rolls
             var f = new Array(0,0,0,0,0,0,0,0); // 
             var total = 0; // Total from values
+            var sValues = new Array();
             
             
                 function roll()
@@ -93,12 +94,9 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
                     
                     function scr(x){
                         var dx0 = document.getElementById("score" + x);
-                        
+                            
                         dx0.innerHTML = f[x] * x;
-
-                        if(x > 6){
-                            dx0.innerHTML = dxV[0] + dxV[1] + dxV[2] + dxV[3] + dxV[4];
-                        }
+                        
                         
                     }
                     function ofaKind(x){
@@ -132,7 +130,12 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
                     function clk(x){
                         var dx0 = document.getElementById("score" + x);
 
-                        dx0.innerHTML = f[x] * x;
+                        sValues.unshift(f[x]);
+                        if(dxR > 0){
+                            dxR = 0;
+                        }
+
+                        dx0.innerHTML = sValues[0];
                     }
 
                     function newGame(){
@@ -237,7 +240,7 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
             <tr>
              <td class="box-1"> Total
             </td>
-            <td class="box-2" id = "score7" onMouseOver = "scr(7)" onMouseOut="clr(7)">
+            <td class="box-2">
             </td>
             </tr>
             
