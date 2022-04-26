@@ -45,8 +45,11 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
             var dxV = new Array(0,0,0,0,0); // Dice individual values
             var h = new Array(false, false, false, false, false); // held array
             var dxR = 0; // Number of rolls
-            var f = new Array(0,0,0,0,0,0,0,0); // 
+            var f = new Array(0,0,0,0,0,0,0,0); // frequency values
+            var clkF = new Array(0,0,0,0,0,0,0,0,0); // stored frequency values
             var total = 0; // Total from values
+            var sh = new Array(false, false, false, false, false, false);
+            var sh2 = new Array(false, false, false);
             var sValues = new Array();
             
             
@@ -93,14 +96,19 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
             }
                     
                     function scr(x){
-                        var dx0 = document.getElementById("score" + x);
-                            
-                        dx0.innerHTML = f[x] * x;
-                        
-                        
+                        if(dxR > 0){
+                            var dx0 = document.getElementById("score" + x);
+
+                        if(sh[x-1] == false){
+                            dx0.innerHTML = f[x] * x;
+                        }
+
+                        }
+                       
                     }
                     function ofaKind(x){
-                        var dx0 = document.getElementById("ofaKind" + x);
+                        if(dxR > 0){
+                            var dx0 = document.getElementById("ofaKind" + x);
 
                         var count = 0;
 
@@ -112,30 +120,79 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
                             }
                         }
 
-                        if(count >= x){
+                        if(sh2[x-1] == false){
+                            if(count >= x+2){
                             dx0.innerHTML = dxV[0] + dxV[1] + dxV[2] + dxV[3] + dxV[4];
-                        }
-                        else{
+                            }
+                            else{
                             dx0.innerHTML = 0;
                         }
-                        
                         }
+                        }
+                    }
                     function clr(x){
                         var dx0 = document.getElementById("score" + x);
                         var dx1 = document.getElementById("ofaKind" + x);
 
-                        dx0.innerHTML = null;
-                        dx1.innerHTML = null;
+                        if(sh[x-1] == false){
+                            dx0.innerHTML = null;
+                        }
+
+                        if(sh2[x-1] == false){
+                            dx1.innerHTML = null;
+                        }
                     }
                     function clk(x){
-                        var dx0 = document.getElementById("score" + x);
+                        if(dxR > 0){
+                            var dx0 = document.getElementById("score" + x);
+                            var dx1 = document.getElementById("Total");
 
-                        sValues.unshift(f[x]);
+
+                        for(var i = 0; i < 5; i++){
+                            var dx1 = document.getElementById("dice-"+i);
+                            dx1.src = "pix/dice" +0+".gif";
+                        }
+                            dxR = 0;
+
+                            if(sh[x-1] == false){
+                                sh[x-1] = true;
+                                dx0.style.fontWeight ="bold";
+                        }
+                            for(i = 0; i < 5; i++){
+                                dxV[i] = 0;
+                        }
+
+                            clkF[x] = dx0.innerHTML;
+                            dx1.innerHTML = total();
+
+                        }
+                        
+                    }
+
+                    function clkOfaKind(x){
+                        if(dxR > 0){
+                            var dx0 = document.getElementById("ofaKind" + x);
+
+                        for(var i = 0; i < 5; i++){
+                            var dx1 = document.getElementById("dice-"+i);
+                            dx1.src = "pix/dice" +0+".gif";
+                        }
                         if(dxR > 0){
                             dxR = 0;
                         }
 
-                        dx0.innerHTML = sValues[0];
+                        if(sh2[x-1] == false){
+                            sh2[x-1] = true;
+                            dx0.style.fontWeight = "bold";
+                        }
+                        clkF[x+5] = dx0.innerHTML;
+                        }
+                    }
+
+                    function total(){
+                        for(i=0; i>10; i++)
+                            total += clkF[i];
+                        return total;
                     }
 
                     function newGame(){
@@ -221,26 +278,26 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
             <tr>
             <td class="box-1"> 3 of a kind
             </td>
-            <td class="box-2" id="ofaKind3" onMouseOver = "ofaKind(3)" onMouseOut="clr(3)">
+            <td class="box-2" id="ofaKind1" onMouseOver = "ofaKind(1)" onMouseOut="clr(1)" onClick="clkOfaKind(1)">
             </td>
             <td class="box-3" rowspan ='5'> <button class="button-2" onClick = "newGame()">New game</button>
             </td> </tr>
             <tr>
              <td class="box-1"> 4 of a kind
             </td>
-            <td class="box-2" id="ofaKind4" onMouseOver = "ofaKind(4)" onMouseOut="clr(4)">
+            <td class="box-2" id="ofaKind2" onMouseOver = "ofaKind(2)" onMouseOut="clr(2)" onClick="clkOfaKind(2)">
             </td>
             </tr>
             <tr>
              <td class="box-1"> Yahtzee
             </td>
-            <td class="box-2" id="ofaKind5" onMouseOver = "ofaKind(5)" onMouseOut="clr(5)">
+            <td class="box-2" id="ofaKind3" onMouseOver = "ofaKind(3)" onMouseOut="clr(3)" onClick="clkOfaKind(3)">
             </td>
             </tr>
             <tr>
              <td class="box-1"> Total
             </td>
-            <td class="box-2">
+            <td class="box-2" id="Total">
             </td>
             </tr>
             
