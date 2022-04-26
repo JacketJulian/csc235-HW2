@@ -50,7 +50,6 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
             var total = 0; // Total from values
             var sh = new Array(false, false, false, false, false, false);
             var sh2 = new Array(false, false, false);
-            var sValues = new Array();
             
             
                 function roll()
@@ -121,7 +120,7 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
                         }
 
                         if(sh2[x-1] == false){
-                            if(count >= x+2){
+                            if(count >= (x+2)){
                             dx0.innerHTML = dxV[0] + dxV[1] + dxV[2] + dxV[3] + dxV[4];
                             }
                             else{
@@ -142,14 +141,14 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
                             dx1.innerHTML = null;
                         }
                     }
-                    function clk(x){
+                    function clk(x){ // THIS IS THE FUNCTION I NEED HELP WITH! - Julian
                         if(dxR > 0){
                             var dx0 = document.getElementById("score" + x);
                             var dx1 = document.getElementById("Total");
 
-
                         for(var i = 0; i < 5; i++){
                             var dx1 = document.getElementById("dice-"+i);
+                            h[i] = false;
                             dx1.src = "pix/dice" +0+".gif";
                         }
                             dxR = 0;
@@ -157,13 +156,13 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
                             if(sh[x-1] == false){
                                 sh[x-1] = true;
                                 dx0.style.fontWeight ="bold";
+                                total += f[x] * x;
+                                dx1.innerHTML = total;
+
                         }
                             for(i = 0; i < 5; i++){
                                 dxV[i] = 0;
                         }
-
-                            clkF[x] = dx0.innerHTML;
-                            dx1.innerHTML = total();
 
                         }
                         
@@ -175,7 +174,9 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
 
                         for(var i = 0; i < 5; i++){
                             var dx1 = document.getElementById("dice-"+i);
+                            h[i] = false;
                             dx1.src = "pix/dice" +0+".gif";
+                            dxV[i] = 0;
                         }
                         if(dxR > 0){
                             dxR = 0;
@@ -196,15 +197,30 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
                     }
 
                     function newGame(){
-                    
+
                         for(var i=0; i<5; i++){
                             var dx0 = document.getElementById("dice-"+ i);
                             dx0.src = "pix/dice" +0+".gif";
                             dxV[i] = 0;
                     }
+                        for(var l=1; l<4; l++){
+                            var dx2 = document.getElementById("ofaKind"+l);
+                            dx2.innerHTML = null;
+                        }
+                        for(var m=1; m<7; m++){
+                            var dx1 = document.getElementById("score" + m);
+                            dx1.innerHTML = null;
+                        }
+
                         for(var n=0; n<9; n++){
                             f[n] = 0;
                     }
+                        for(var o=0; o<6; o++){
+                            sh[o] = false;
+                        }
+                        for(var j=0; j<3; j++){
+                            sh2[j] = false;
+                        }
                 
                         dxR = 0;
 
@@ -297,7 +313,7 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
             <tr>
              <td class="box-1"> Total
             </td>
-            <td class="box-2" id="Total">
+            <td class="box-2" id="Total" onClick="clk(1)">
             </td>
             </tr>
             
