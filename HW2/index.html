@@ -141,10 +141,9 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
                             dx1.innerHTML = null;
                         }
                     }
-                    function clk(x){ // THIS IS THE FUNCTION I NEED HELP WITH! - Julian
+                    function clk(x){ 
                         if(dxR > 0){
                             var dx0 = document.getElementById("score" + x);
-                            var dx1 = document.getElementById("Total");
 
                         for(var i = 0; i < 5; i++){
                             var dx1 = document.getElementById("dice-"+i);
@@ -154,10 +153,12 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
                             dxR = 0;
 
                             if(sh[x-1] == false){
+                                var dx2 = document.getElementById("Total");
                                 sh[x-1] = true;
                                 dx0.style.fontWeight ="bold";
                                 total += f[x] * x;
-                                dx1.innerHTML = total;
+                                dx2.innerHTML = total;
+                                dx2.style.fontWeight ="bold";
 
                         }
                             for(i = 0; i < 5; i++){
@@ -183,8 +184,12 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
                         }
 
                         if(sh2[x-1] == false){
+                            var dx2 = document.getElementById("Total");
                             sh2[x-1] = true;
                             dx0.style.fontWeight = "bold";
+                            total += parseInt(dx0.innerHTML);
+                                dx2.innerHTML = total;
+                                dx2.style.fontWeight ="bold";
                         }
                         clkF[x+5] = dx0.innerHTML;
                         }
@@ -198,9 +203,12 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
 
                     function newGame(){
 
+                        var dx3 = document.getElementById("Total");
+
                         for(var i=0; i<5; i++){
                             var dx0 = document.getElementById("dice-"+ i);
                             dx0.src = "pix/dice" +0+".gif";
+                            h[i] = false;
                             dxV[i] = 0;
                     }
                         for(var l=1; l<4; l++){
@@ -221,6 +229,9 @@ Git-Hub: https://github.com/JacketJulian/csc235-HW2
                         for(var j=0; j<3; j++){
                             sh2[j] = false;
                         }
+                        total = 0;
+
+                        dx3.innerHTML = null;
                 
                         dxR = 0;
 
